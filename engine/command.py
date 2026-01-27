@@ -24,7 +24,7 @@ def takeCommand():
         eel.DisplayMessage("Recognizing...")
         query = r.recognize_google(audio, language='en')
         print(f"User said: {query}\n")
-        speak(query)
+        #speak(query)
         eel.DisplayMessage(query)
         eel.ShowHood()
     except Exception as e:
@@ -34,3 +34,11 @@ def takeCommand():
 #text = takeCommand()
 
 #speak(text)
+
+@eel.expose
+def allCommands():
+    query=takeCommand()
+    print(query)
+    if 'open' in query:
+        from engine.features import OpenCommand
+        OpenCommand(query)
